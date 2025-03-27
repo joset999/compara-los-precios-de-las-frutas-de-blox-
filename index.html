@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Intercambios Blox Fruits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Calculadora de Intercambios Blox Fruits</h1>
+
+    <div class="intercambio">
+        <div class="lado">
+            <h2>Tu Lado</h2>
+            <input type="text" id="fruta1_tu" placeholder="Fruta 1">
+            <input type="text" id="fruta2_tu" placeholder="Fruta 2">
+            <input type="text" id="fruta3_tu" placeholder="Fruta 3">
+            <input type="text" id="fruta4_tu" placeholder="Fruta 4">
+        </div>
+
+        <div class="lado">
+            <h2>Su Lado</h2>
+            <input type="text" id="fruta1_su" placeholder="Fruta 1">
+            <input type="text" id="fruta2_su" placeholder="Fruta 2">
+            <input type="text" id="fruta3_su" placeholder="Fruta 3">
+            <input type="text" id="fruta4_su" placeholder="Fruta 4">
+        </div>
+    </div>
+
+    <button id="calcular">Calcular</button>
+
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.intercambio {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.lado {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+input {
+    margin: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#resultado {
+    margin-top: 20px;
+    font-weight: bold;
+}const precios = {
+    "fruta1": 10, // Reemplaza con los precios reales
+    "fruta2": 20,
+    "fruta3": 30,
+    "fruta4": 40,
+    // Agrega más frutas y precios
+};
+
+function calcularValor(lado) {
+    let valor = 0;
+    for (let i = 1; i <= 4; i++) {
+        const fruta = document.getElementById(fruta${i}_${lado}).value.toLowerCase();
+        if (precios[fruta]) {
+            valor += precios[fruta];
+        }
+    }
+    return valor;
+}
+
+document.getElementById("calcular").addEventListener("click", () => {
+    const valorTu = calcularValor("tu");
+    const valorSu = calcularValor("su");
+
+    if (valorTu === valorSu) {
+        document.getElementById("resultado").textContent = "El intercambio está equilibrado.";
+    } else if (valorTu > valorSu) {
+        document.getElementById("resultado").textContent = "Tu lado tiene más valor.";
+    } else {
+        document.getElementById("resultado").textContent = "Su lado tiene más valor.";
+    }
+});
